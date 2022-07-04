@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Траектория полета</title>
+    <script src="trajectory.js"></script>
+</head>
+<body>
+    <canvas id="canvasGraph" width="800" height="400" style="border:1px solid #000000;"></canvas>
+
+ 	<!--Выбор графика (чекбоксы)-->
+	<div>
+        Траектория:
+        <font color="#FF0000" size="5"><B>—</B></font>
+		<input type="checkbox" id="checkbox_01" name="" onchange="app.setCheckbox_01(this.checked);" checked/>с учетом сопротивления,
+		<font color="#AAAAAA" size="5"><B>—</B></font>
+		<input type="checkbox" id="checkbox_02" name="" onchange="app.setCheckbox_02(this.checked);" checked/>без сопротивления
+    </div>	
+
+    <!--Установка параметров взаимодействия (текстовые поля и слайдеры)-->
+    <div>
+		Угол броска:
+        <font face= "Times New Roman">
+		<I>α</I> = <input id="Text_01" style="width: 2.2ex;" oninput="
+            // если введено не число - строка не пройдет валидацию по паттерну выше, и checkValidity() вернет false
+    
+            app.set_01(this.value);
+            document.getElementById('Slider_01').value = this.value;
+        " disabled>˚
+		<input type="range" id="Slider_01" style="width: 100px;" oninput="app.set_01(this.value); document.getElementById('Text_01').value = this.value;">
+		</font>,
+		коэффициент сопротивления: 
+        <font face= "Times New Roman">
+		<I>β</I> = <input id="Text_02" style="width: 4.4ex;" oninput="
+            app.set_02(this.value);
+            document.getElementById('Slider_02').value = this.value;
+        " disabled><I> g/v</I><SUB>0</SUB>
+		<input type="range" id="Slider_02" style="width: 100px;" oninput="app.set_02(this.value); document.getElementById('Text_02').value = this.value;">
+		</font>
+	</div>
+<div>
+Начальная скорость:
+        <font face= "Times New Roman">
+		<I>v0</I> = <input id="Text_03" style="width: 2.2ex;" oninput="
+            app.set_03(this.value);
+            document.getElementById('Slider_03').value = this.value;
+        " disabled><I> м/с</I>
+		<input type="range" id="Slider_03" style="width: 100px;" oninput="app.set_03(this.value); document.getElementById('Text_03').value = this.value;">
+		</font>
+</div>    
+	<script type="text/javascript">var app = new MainMGB(
+		document.getElementById('canvasGraph')
+	);</script>
+
+</body>
+</html>
