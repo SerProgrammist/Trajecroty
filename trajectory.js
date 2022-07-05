@@ -9,7 +9,7 @@ function MainMGB(canvas) {
 	
     // Размерные параметры
 
-    var g = 1.;    // ускорение свободного падения
+    var g = 10.;    // ускорение свободного падения
 var v0 = 1;
 if (v0 === 1) {
 	var v0 = Slider_03.value;
@@ -68,7 +68,9 @@ if (v0 === 1) {
     // функция, запускающаяся при перемещении слайдера
     this.set_01 = function(input) { set_al(input); draw(); }  
     this.set_02 = function(input) { beta = Number(input) * g / v0; Text_02.value = Math.round(beta / g * v0 * 100) / 100; Slider_02.value = Text_02.value; draw(); } 
-this.set_03 = function(input) { v0 = Number(input); Text_03.value = Math.round(v0); Slider_03.value = Text_03.value; draw(); }   
+	this.set_03 = function (input) {
+		v0 = Number(input); Text_03.value = Math.round(v0); Slider_03.value = Text_03.value; v0x = v0 * Math.cos(al);
+		v0y = v0 * Math.sin(al); draw(); }
 
 	// Функции, запускающиеся при изменении элементов управления
     this.setCheckbox_01 = function(bool) { draw(); }
